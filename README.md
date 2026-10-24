@@ -8,7 +8,7 @@ Repositori ini berisi implementasi kode program untuk Praktikum Pemrograman Bero
 
 * **Polymorphism (Method Overriding)**: Mengimplementasikan perilaku dinamis (*Dynamic Binding*) pada tingkat *runtime*.
 * **Abstract Class & Abstract Method**: Merancang kerangka dasar hierarki kelas yang tidak dapat diinstansiasi secara langsung.
-* **Interface & Multiple Implementation**: Membuat kontrak arsitektur perangkat lunak dan menyimulasikan pewarisan ganda (*multiple inheritance*) pada Java[cite: 1, 3].
+* **Interface & Multiple Implementation**: Membuat kontrak arsitektur perangkat lunak dan menyimulasikan pewarisan ganda (*multiple inheritance*) pada Java.
 
 ---
 
