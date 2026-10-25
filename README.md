@@ -1,28 +1,48 @@
-# Praktikum PBO Modul 8 - Polymorphism, Abstract Class, dan Interface
+# Praktikum 8 - Pemrograman Berbasis Objek (Java)
 
-Repositori ini berisi implementasi kode program untuk Praktikum Pemrograman Berorientasi Objek (PBO) Modul 8. Seluruh kode berada di dalam package `praktikum8`.
-
----
-
-## Topik Pembelajaran
-
-* **Polymorphism (Method Overriding)**: Mengimplementasikan perilaku dinamis (*Dynamic Binding*) pada tingkat *runtime*.
-* **Abstract Class & Abstract Method**: Merancang kerangka dasar hierarki kelas yang tidak dapat diinstansiasi secara langsung.
-* **Interface & Multiple Implementation**: Membuat kontrak arsitektur perangkat lunak dan menyimulasikan pewarisan ganda (*multiple inheritance*) pada Java.
+Repositori ini berisi kumpulan kode program Java untuk **Praktikum 8** yang berfokus pada penerapan konsep **Polimorfisme (Polymorphism)**, **Class Abstrak (Abstract Class)**, dan **Interface** dalam Pemrograman Berbasis Objek (PBO).
 
 ---
 
-## Struktur Direktori & Penjelasan Kode
+## Struktur Direktori & Penjelasan Kelas
 
-```text
-src/
-└── praktikum8/
-    ├── Hewan.java
-    ├── Kucing.java
-    ├── Anjing.java
-    ├── PoliTester.java
-    ├── BangunDatar.java
-    ├── Lingkaran.java
-    ├── AlatElektronik.java
-    ├── Kamera.java
-    └── Smartphone.java
+Seluruh kode berada di bawah package `praktikum8`. Berikut adalah rincian peran dari setiap berkas Java:
+
+### 1. Konsep Interface & Multiple Implementation
+
+* **`AlatElektronik.java`**  
+  Interface yang mendefinisikan kontrak dasar operasi perangkat elektronik dengan method abstrak `nyalakan()` dan `matikan()`[cite: 1].
+
+* **`Kamera.java`**  
+  Interface yang mendefinisikan perilaku pengambilan gambar dengan method abstrak `ambilFoto()`[cite: 5].
+
+* **`Smartphone.java`**  
+  Kelas konkret yang mengimplementasikan dua interface sekaligus (`AlatElektronik` dan `Kamera`) untuk menyimulasikan fungsi ponsel pintar[cite: 9].
+
+---
+
+### 2. Konsep Polimorfisme & Method Overriding
+
+* **`Hewan.java`**  
+  *Superclass* (kelas induk) yang menyediakan method umum `bersuara()` sebagai dasar hirarki pewarisan[cite: 4].
+
+* **`Kucing.java`**  
+  *Subclass* dari `Hewan` yang melakukan *method overriding* pada method `bersuara()` untuk menghasilkan suara kucing ("Meow meow!")[cite: 6].
+
+* **`Anjing.java`**  
+  *Subclass* dari `Hewan` yang melakukan *method overriding* pada method `bersuara()` untuk menghasilkan suara anjing ("Guk guk!")[cite: 2].
+
+* **`PoliTester.java`**  
+  Kelas utama (*main class*) yang mendemonstrasikan polimorfisme dan *upcasting* menggunakan array bertipe `Hewan[]`.
+
+---
+
+### 3. Konsep Abstract Class
+
+* **`BangunDatar.java`**  
+  Kelas abstrak (*abstract class*) yang memiliki atribut `warna`, *concrete method* `cetakWarna()`, serta *abstract method* `hitungLuas()`[cite: 3].
+
+* **`Lingkaran.java`**  
+  *Subclass* dari `BangunDatar` yang menyimpan atribut `jariJari` dan mengimplementasikan perhitungan luas lingkaran pada method `hitungLuas()`[cite: 7].
+
+---
