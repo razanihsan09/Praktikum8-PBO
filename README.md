@@ -1,48 +1,115 @@
-# Praktikum 8 - Pemrograman Berbasis Objek (Java)
+# Penjelasan Source Code dan File Java (Praktikum 8)
 
-Repositori ini berisi kumpulan kode program Java untuk **Praktikum 8** yang berfokus pada penerapan konsep **Polimorfisme (Polymorphism)**, **Class Abstrak (Abstract Class)**, dan **Interface** dalam Pemrograman Berbasis Objek (PBO).
-
----
-
-## Struktur Direktori & Penjelasan Kelas
-
-Seluruh kode berada di bawah package `praktikum8`. Berikut adalah rincian peran dari setiap berkas Java:
-
-### 1. Konsep Interface & Multiple Implementation
-
-* **`AlatElektronik.java`**  
-  Interface yang mendefinisikan kontrak dasar operasi perangkat elektronik dengan method abstrak `nyalakan()` dan `matikan()`[cite: 1].
-
-* **`Kamera.java`**  
-  Interface yang mendefinisikan perilaku pengambilan gambar dengan method abstrak `ambilFoto()`[cite: 5].
-
-* **`Smartphone.java`**  
-  Kelas konkret yang mengimplementasikan dua interface sekaligus (`AlatElektronik` dan `Kamera`) untuk menyimulasikan fungsi ponsel pintar[cite: 9].
+Dokumen ini berisi penjelasan detail mengenai setiap file Java dan kode program yang terdapat dalam package `praktikum8`.
 
 ---
 
-### 2. Konsep Polimorfisme & Method Overriding
+## 1. Interface & Multiple Implementation
 
-* **`Hewan.java`**  
-  *Superclass* (kelas induk) yang menyediakan method umum `bersuara()` sebagai dasar hirarki pewarisan[cite: 4].
+### 📄 `AlatElektronik.java`
+**Fungsi:** Merupakan sebuah **Interface** yang menjadi kontrak dasar operasi untuk semua perangkat elektronik.
 
-* **`Kucing.java`**  
-  *Subclass* dari `Hewan` yang melakukan *method overriding* pada method `bersuara()` untuk menghasilkan suara kucing ("Meow meow!")[cite: 6].
+```java
+package praktikum8;
 
-* **`Anjing.java`**  
-  *Subclass* dari `Hewan` yang melakukan *method overriding* pada method `bersuara()` untuk menghasilkan suara anjing ("Guk guk!")[cite: 2].
+public interface AlatElektronik {
+    void nyalakan();
+    void matikan();
+}
+Penjelasan Kode:public interface AlatElektronik: Mendeklarasikan sebuah interface.void nyalakan(); dan void matikan();: Method abstrak tanpa bodi/implementasi. Setiap class yang mengimplementasikan interface ini wajib menyediakan implementasi untuk kedua method ini.📄 Kamera.javaFungsi: Merupakan sebuah Interface yang mendefinisikan kemampuan atau perilaku pengambilan foto.Javapackage praktikum8;
 
-* **`PoliTester.java`**  
-  Kelas utama (*main class*) yang mendemonstrasikan polimorfisme dan *upcasting* menggunakan array bertipe `Hewan[]`.
+public interface Kamera {
+    void ambilFoto();
+}
+Penjelasan Kode:void ambilFoto();: Method abstrak yang harus diimplementasikan oleh class mana pun yang bertindak sebagai kamera.📄 Smartphone.javaFungsi: Class konkret yang menerapkan Multiple Interface Implementation dengan mengimplementasikan dua interface sekaligus, yaitu AlatElektronik dan Kamera.Javapackage praktikum8;
 
----
+public class Smartphone implements AlatElektronik, Kamera {
+    private String merk;
 
-### 3. Konsep Abstract Class
+    public Smartphone(String merk) {
+        this.merk = merk;
+    }
 
-* **`BangunDatar.java`**  
-  Kelas abstrak (*abstract class*) yang memiliki atribut `warna`, *concrete method* `cetakWarna()`, serta *abstract method* `hitungLuas()`[cite: 3].
+    @Override
+    public void nyalakan() {
+        System.out.println(merk + " menyala, Booting OS...");
+    }
 
-* **`Lingkaran.java`**  
-  *Subclass* dari `BangunDatar` yang menyimpan atribut `jariJari` dan mengimplementasikan perhitungan luas lingkaran pada method `hitungLuas()`[cite: 7].
+    @Override
+    public void matikan() {
+        System.out.println(merk + " dimatikan. Goodbye.");
+    }
 
----
+    @Override
+    public void ambilFoto() {
+        System.out.println("Cekrek! Foto berhasil disimpan di galeri " + merk);
+    }
+}
+Penjelasan Kode:implements AlatElektronik, Kamera: Menyatakan bahwa class Smartphone memenuhi kontrak dari dua interface sekaligus.private String merk;: Variabel instans yang dienkapsulasi untuk menyimpan nama merek.@Override: Anotasi penanda bahwa method nyalakan(), matikan(), dan ambilFoto() meng-override method abstrak dari interface yang diimplementasikannya.2. Polimorfisme & Method Overriding📄 Hewan.javaFungsi: Class induk (Superclass) yang menjadi dasar hierarki pewarisan (inheritance) untuk class hewan.Javapackage praktikum8;
+
+public class Hewan {
+    public void bersuara() {
+        System.out.println("Hewan ini mengeluarkan suara yang tidak spesifik.");
+    }
+}
+Penjelasan Kode:public void bersuara(): Method umum yang memberikan perilaku bawaan (default) untuk semua jenis hewan.📄 Kucing.javaFungsi: Class turunan (Subclass) dari Hewan yang merepresentasikan objek Kucing.Javapackage praktikum8;
+
+public class Kucing extends Hewan {
+    @Override
+    public void bersuara() {
+        System.out.println("Kucing: Meow meow!");
+    }
+}
+Penjelasan Kode:extends Hewan: Mewarisi seluruh atribut dan method dari class Hewan.@Override: Mengganti isi logika method bersuara() milik class induk agar mengeluarkan suara khas kucing ("Kucing: Meow meow!").📄 Anjing.javaFungsi: Class turunan (Subclass) dari Hewan yang merepresentasikan objek Anjing.Javapackage praktikum8;
+
+public class Anjing extends Hewan {
+    @Override
+    public void bersuara() {
+        System.out.println("Anjing: Guk guk!");
+    }
+}
+Penjelasan Kode:extends Hewan: Mewarisi class Hewan.@Override: Meng-override method bersuara() untuk menghasilkan respon suara spesifik anjing ("Anjing: Guk guk!").📄 PoliTester.javaFungsi: Class utama (Main Class) yang mendemonstrasikan konsep Polimorfisme dan Upcasting.Javapackage praktikum8;
+
+public class PoliTester {
+    public static void main(String[] args) {
+        Hewan[] daftarHewan = new Hewan[3];
+        daftarHewan[0] = new Hewan();
+        daftarHewan[1] = new Kucing(); // Upcasting
+        daftarHewan[2] = new Anjing(); // Upcasting
+
+        for (Hewan h : daftarHewan) {
+            h.bersuara();
+        }
+    }
+}
+Penjelasan Kode:Hewan[] daftarHewan = new Hewan[3];: Mendeklarasikan array berkapasitas 3 dengan tipe superclass Hewan.daftarHewan[1] = new Kucing(); & daftarHewan[2] = new Anjing();: Praktik Upcasting, di mana objek subclass disimpan ke dalam variabel bertipe superclass.for (Hewan h : daftarHewan) { h.bersuara(); }: Penerapan Polimorfisme (Dynamic Method Dispatch). Meskipun method yang dipanggil sama (h.bersuara()), output yang keluar berbeda-beda menyesuaikan dengan tipe objek asli yang disimpan di memory saat runtime.3. Abstract Class & Inheritance📄 BangunDatar.javaFungsi: Class abstrak (Abstract Class) yang digunakan sebagai cetak biru dasar untuk bentuk bangun datar.Javapackage praktikum8;
+
+public abstract class BangunDatar {
+    String warna;
+
+    public BangunDatar(String warna) {
+        this.warna = warna;
+    }
+
+    public abstract double hitungLuas();
+
+    public void cetakWarna() {
+        System.out.println("Warna bangun ini adalah: " + warna);
+    }
+}
+Penjelasan Kode:public abstract class BangunDatar: Mencegah class diinstansiasi secara langsung (new BangunDatar()).public abstract double hitungLuas();: Method abstrak tanpa bodi. Mengharuskan setiap subclass untuk mengimplementasikan rumus perhitungan luas spesifiknya.public void cetakWarna(): Concrete method yang sudah memiliki implementasi dan dapat digunakan langsung oleh subclass.📄 Lingkaran.javaFungsi: Class konkret turunan dari BangunDatar yang mewakili bangun datar Lingkaran.Javapackage praktikum8;
+
+public class Lingkaran extends BangunDatar {
+    private double jariJari;
+
+    public Lingkaran(String warna, double jariJari) {
+        super(warna);
+        this.jariJari = jariJari;
+    }
+
+    @Override
+    public double hitungLuas() {
+        return Math.PI * jariJari * jariJari;
+    }
+}
+Penjelasan Kode:extends BangunDatar: Mewarisi class abstrak BangunDatar.super(warna);: Memanggil konstruktor class induk untuk mengisi atribut warna.@Override public double hitungLuas(): Mengimplementasikan method abstrak hitungLuas() dengan rumus luas lingkaran ($\pi \times r^2$) menggunakan Math.PI.
