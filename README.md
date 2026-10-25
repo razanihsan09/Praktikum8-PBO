@@ -1,7 +1,5 @@
 # Dokumentasi Kode Program & Penjelasan Class Praktikum 8 (PBO)
 
-Dokumen ini berisi kode program beserta penjelasan lengkap untuk setiap file Java pada package `praktikum8`.
-
 ---
 
 ## Kegiatan 1: Polimorfisme & Method Overriding
